@@ -1,9 +1,9 @@
 :root {
-	background-color: #000 !important;
+	background-color: #1d1d1d !important;
 }
 
 body {
-	background-color: #000;
+	background-color: #1d1d1d;
 	display: flex;
 	justify-content: center;
 }
@@ -55,5 +55,5 @@ a {
 @keyframes change {
     	0%  { color:  #0f0; }
     	50% { color:  #0f0; }
-    	99% { color: black; }
+    	99% { color: #1d1d1d; }
 }
