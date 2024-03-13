@@ -17,7 +17,16 @@ body {
 
 	font-size:14px;
 }
-
+#console-background {
+    width: 800px; /* or a specific px value */
+    height: 450px; /* Adjust based on your content needs */
+    background-color: #191919;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Ensures content doesn't spill outside the box */
+    margin: 0 auto; /* Center the box if desired */
+}
 .content-wrapper {
 	align-items: flex-start;
 }
@@ -55,5 +64,5 @@ a {
 @keyframes change {
     	0%  { color:  #0f0; }
     	50% { color:  #0f0; }
-    	99% { color: #1d1d1d; }
+    	99% { color: #2F3646; }
 }
