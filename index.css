@@ -1,9 +1,9 @@
 :root {
-	background-color: #1d1d1d !important;
+	background-color: #181818 !important;
 }
 
 body {
-	background-color: #1d1d1d;
+	background-color: #181818;
 	display: flex;
 	justify-content: center;
 }
@@ -54,6 +54,17 @@ a {
 
 @keyframes change {
     	0%  { color:  #0f0; }
-    	50% { color:  #0f0; }
-    	99% { color: #2F3646; }
+		99% { color: #181818; }
 }
+
+.fade-in { 
+	animation: fadeIn 2s; 
+}
+
+@keyframes fadeIn {
+	0% { opacity: 0; }
+	70% { opacity: 0; }
+	100% { opacity: 1; }
+  }
+  
+  
