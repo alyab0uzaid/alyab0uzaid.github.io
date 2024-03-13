@@ -3,10 +3,10 @@
 <span id="k">Welcome Earthling</span> <!-- sjkfhskjf -->
 I'm Aly. This is my digital echo, crafted for times I can't be there.
 
-<p>I'm a Computer Science/Mass Communications student at Southern Illinois University Edwardsville, passionate about technology's capacity to connect people and share ideas. Download my<a href="AlyAbouZaidResume2024.pdf"> resume</a></p><!-- kjdhjhgdgldjhgdwtoiewotwotjdfkjdfffsf -->
-<br> Watch my productions <a href="https://www.youtube.com/@AlyAbouZaid" target="_blank> here</a></p><!-- hsdgfhjfkdjhfkjsdhfkjdshfkjsd --> Check out my clothing brand - <a href="/https://www.instagram.com/nostaffclothing/?hl=en" target="_blank> NoStaff Clothing</a></p><!-- hsdgfhjfkdjhfkjsdhfkjdshfkjsdhfkjsdhkfjhdskjfhksdjhfkdsj -->
+<p>I'm a Computer Science/Mass Communications student at Southern Illinois University Edwardsville, passionate about technology's capacity to connect people and share ideas. Download my<a href="AlyAbou-ZaidResume2024.pdf"> resume</a></p><!-- kjdhjhgdgldjhgdwtoiewotwotjdfkjdfffsf -->
+<br> Watch my productions <a href="https://www.youtube.com/@AlyAbouZaid" target="_blank"> here</a></p><!-- hsdgfhjfkdjhfkjsdhfkjdshfkjsd --> Check out my clothing brand: <a href="/https://www.instagram.com/nostaffclothing/?hl=en" target="_blank">NoStaff Clothing</a></p><!-- hsdgfhjfkdjhfkjsdhfkjdshfkjsdhfkjsdhkfjhdskjfhksdjhfkdsj -->
 
-<br> <a href="https://github.com/alyab0uzaid/" target="_blank>[Github]</a> <br> <a href="https://www.linkedin.com/in/alyabouzaid" target="_blank>[Linkedin]</a></p>
+<br> <a href="https://github.com/alyab0uzaid/" target="_blank">[Github]</a> <br> <a href="https://www.linkedin.com/in/alyabouzaid" target="_blank">[Linkedin]</a></p>
 
 Feel free to send me an email at <!-- longlonglongcomment --><a href="mailto:aabouza@siue.edu">aabouza@siue.edu</a>.
 
