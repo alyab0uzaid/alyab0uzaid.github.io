@@ -17,7 +17,6 @@ body {
 }
 
 .terminal {
-  padding: 20px;
   border-radius: 8px;
   width: 600px; /* Fixed width */
   min-height: 100px; /* This grows with the content */
@@ -51,7 +50,7 @@ body {
 }
 
 .track-name {
-  color: #FFFFFF; 
+  color: #cccccc; 
 }
 
 .track-artist {
@@ -59,3 +58,75 @@ body {
   font-style: italic;
 }
 
+.container {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  align-items: center;     /* Center them horizontally */
+}
+
+.ascii-art pre {
+  font-family: monospace;
+  color: #00ff00; /*Green terminal-like color */
+  text-align: center; /* Center ASCII art */
+  margin-bottom: 20px; /* Add space between ASCII art and terminal */
+  background-color: transparent;
+  border-color: transparent;
+}
+
+/* Center the content both vertically and horizontally */
+.termify-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+  text-align: center;
+}
+
+/* Style the title */
+.termify-title {
+  font-size: 2.2em;
+  margin-bottom: 20px;
+  color: #cccccc;
+}
+
+/* Style the login button */
+.termify-login-button {
+  font-size: 15px;
+  color: #cccccc;
+  text-decoration:none;
+  background-color: #1e1e1f;
+  border: 1px solid  #cccccc;
+  border-radius: 0.1875rem;
+  box-shadow: 0 0 0 2px #1e1e1f, 0 0 0 5px  #cccccc;
+  cursor: pointer;
+  display: inline-block;
+  width: 140px;
+  margin-top: 10px; 
+  margin-bottom: 20px;
+}
+/* Hover effect for the login button */
+.termify-login-button:hover {
+  background-color: #cccccc;
+  color:#1e1e1f;
+}
+
+/* Style for the command-line text */
+.command-line {
+  color: #cccccc; /* Green text for a terminal effect */
+  display: inline-block;
+  margin-bottom: 20px; /* Add space between the command line and terminal */
+}
+
+
+#command-input {
+  font-size: 16px;
+  margin-left: 2px;
+  border: none;
+  outline: none;
+  background: none;
+  font-family: monospace;
+  width: auto;
+  width: auto; /* Automatically size the input based on the text */
+  display: inline; /* Keep the input in the same line as the text */
+}

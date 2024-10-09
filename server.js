@@ -96,3 +96,9 @@ let listener = app.listen(3000, function () {
     "Your app is listening on http://localhost:" + listener.address().port
   );
 });
+
+app.get('/get-top-tracks', async (req, res) => {
+  const timeRange = req.query.time_range; // short_term, medium_term, long_term
+  const tracks = await getData(`/me/top/tracks?time_range=${timeRange}&limit=10`);
+  res.json(tracks); // Send the top tracks as JSON
+});
