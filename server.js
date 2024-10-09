@@ -77,7 +77,6 @@ app.get("/dashboard", async (req, res) => {
 
   res.render("dashboard", { user: userInfo, tracks: topTracks.items });
 });
-
 app.get("/recommendations", async (req, res) => {
   const artist_id = req.query.artist;
   const track_id = req.query.track;
