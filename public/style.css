@@ -1,31 +1,61 @@
 body {
-  padding: 1em 2em;
-}
-ul.footer {
-  list-style:none;
-  display:inline;
-}
-ul.footer li {
-  display:inline;
-  margin-right: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100vh;
+  margin: 0;
+  background-color: #1e1e1f;
+  font-family: monospace;
 }
 
-table {
-  font-family: Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: auto;
+.flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  padding-top: 50px;
 }
 
-td {
-  border: 0px solid #ddd;
-  padding: 12px;
-  padding-left: 10px;
+.terminal {
+  padding: 20px;
+  border-radius: 8px;
+  width: 600px; /* Fixed width */
+  min-height: 100px; /* This grows with the content */
+  white-space: pre-wrap; /* Allows text to wrap to the next line */
+  word-break: break-word; /* Breaks long words */
 }
 
-.circular_image {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  overflow: hidden;
-  float: left;
+.track-text {
+  color: #FFFFFF; /* White for the text */
+  font-family: monospace; /* Monospace for terminal look */
 }
+
+.tracks-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.track {
+  font-size: 16px;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.hidden {
+  opacity: 0; /* Start hidden, then reveal the track when typing starts */
+}
+
+.track-number {
+  color: #00FF00;
+  font-weight: bold;
+}
+
+.track-name {
+  color: #FFFFFF; 
+}
+
+.track-artist {
+  color: #AAAAAA;
+  font-style: italic;
+}
+

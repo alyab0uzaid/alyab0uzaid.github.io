@@ -9,8 +9,8 @@ app.set("view engine", "pug");
 app.use(express.static("public"));
 
 const redirect_uri = "http://localhost:3000/callback";
-const client_id = "";
-const client_secret = "";
+const client_id = "1ca6960013344c3f9d74dbbddb4f58bd";
+const client_secret = "e458068308b247c0b4fc223c2f0999c1";
 
 global.access_token;
 
@@ -22,7 +22,7 @@ app.get("/authorize", (req, res) => {
   var auth_query_parameters = new URLSearchParams({
     response_type: "code",
     client_id: client_id,
-    scope: "user-library-read",
+    scope: "user-top-read",
     redirect_uri: redirect_uri,
   });
 
@@ -71,9 +71,11 @@ async function getData(endpoint) {
 
 app.get("/dashboard", async (req, res) => {
   const userInfo = await getData("/me");
-  const tracks = await getData("/me/tracks?limit=10");
+  const topTracks = await getData("/me/top/tracks?limit=10");
+  
+  console.log('Top Tracks:', topTracks.items); // Check if tracks are being fetched
 
-  res.render("dashboard", { user: userInfo, tracks: tracks.items });
+  res.render("dashboard", { user: userInfo, tracks: topTracks.items });
 });
 
 app.get("/recommendations", async (req, res) => {
