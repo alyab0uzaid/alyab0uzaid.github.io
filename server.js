@@ -77,6 +77,7 @@ app.get("/dashboard", async (req, res) => {
 
   res.render("dashboard", { user: userInfo, tracks: topTracks.items });
 });
+
 app.get("/recommendations", async (req, res) => {
   const artist_id = req.query.artist;
   const track_id = req.query.track;
@@ -102,3 +103,5 @@ app.get('/get-top-tracks', async (req, res) => {
   const tracks = await getData(`/me/top/tracks?time_range=${timeRange}&limit=10`);
   res.json(tracks); // Send the top tracks as JSON
 });
+
+

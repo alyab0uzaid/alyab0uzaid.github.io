@@ -45,7 +45,7 @@ body {
 }
 
 .track-number {
-  color: #00FF00;
+  color: #0cbd79;
   font-weight: bold;
 }
 
@@ -66,7 +66,7 @@ body {
 
 .ascii-art pre {
   font-family: monospace;
-  color: #00ff00; /*Green terminal-like color */
+  color: #0cbd79; /*Green terminal-like color */
   text-align: center; /* Center ASCII art */
   margin-bottom: 20px; /* Add space between ASCII art and terminal */
   background-color: transparent;
@@ -115,7 +115,23 @@ body {
 .command-line {
   color: #cccccc; /* Green text for a terminal effect */
   display: inline-block;
-  margin-bottom: 20px; /* Add space between the command line and terminal */
+  margin-top: 20px;
+  margin-bottom: 0px;
+}
+
+.instr-command-line {
+  color: #cccccc; /* Green text for a terminal effect */
+  display: inline-block;
+  margin-bottom: 0px; /* Add space between the command line and terminal */
+}
+
+.command{
+  color: #e5e50e;
+  margin-left: 0px;
+}
+
+.instr{
+  color: #cccccc;
 }
 
 
@@ -130,3 +146,17 @@ body {
   width: auto; /* Automatically size the input based on the text */
   display: inline; /* Keep the input in the same line as the text */
 }
+
+.command{
+  color: #e5e50e;
+  margin-left: 0px;
+}
+
+
+.info-message{
+  color: #13a7cd;
+}
+.error-message {
+  color: #d75959; /* Red */
+}
+

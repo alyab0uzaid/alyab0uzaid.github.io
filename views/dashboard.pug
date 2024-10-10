@@ -13,10 +13,26 @@ block content
         |                              /____/  
 
     .terminal
+      // Instructions remain
+      p.instr-command-line
+        span.instr Welcome to Termify #{user.display_name.trim()}
+      p.instr-command-line
+        span.instr Type 
+        span.command '4weeks' 
+        span.instr Display top songs from past 4 weeks
+      p.instr-command-line
+        span.instr Type 
+        span.command '6months' 
+        span.instr Display top songs from past 6 months
+
+      // Command line for user input
       p.command-line
-        span #{user.id}@termify:~$
+        span #{user.display_name.trim()}@termify:~$
         input#command-input(type='text', placeholder='', autocomplete='off')
 
+      // Output container for command feedback and tracks
+      .output-container
+        .output-area
       .tracks-container
         each track, index in tracks
           .track.hidden
@@ -27,8 +43,8 @@ block content
   script.
     document.addEventListener('DOMContentLoaded', () => {
       const commandInput = document.getElementById('command-input');
+      const outputArea = document.querySelector('.output-area');
       const tracksContainer = document.querySelector('.tracks-container');
-      let currentIndex = 0;
 
       // Automatically focus the input without clicking
       commandInput.focus();
@@ -48,9 +64,22 @@ block content
         type();
       }
 
+      // Function to display typed messages in the terminal
+      function displayTypedMessage(text, className, callback) {
+        outputArea.innerHTML = ''; // Clear previous outputs
+        const outputLine = document.createElement('p');
+        outputLine.classList.add('command-output'); // Base class for all messages
+        if (className) {
+          outputLine.classList.add(className); // Add specific class for info or error
+        }
+        outputArea.appendChild(outputLine);
+        typeText(outputLine, text, 10, callback); // Typing effect for the message
+      }
+
+
       // Function to display the next track, one by one
       function typeNextTrack(tracks) {
-        currentIndex = 0; // Reset the index
+        let currentIndex = 0; // Reset the index
         tracksContainer.innerHTML = ''; // Clear previous tracks
 
         function typeNext() {
@@ -79,8 +108,8 @@ block content
             const artistText = track.artists[0].name;
 
             // First type out the track name, then the artist name
-            typeText(trackName, nameText, 10, () => {
-              typeText(trackArtist, artistText, 10, () => {
+            typeText(trackName, nameText, 8, () => {
+              typeText(trackArtist, artistText, 8, () => {
                 currentIndex++;
                 typeNext(); // Start typing the next track after this one finishes
               });
@@ -103,12 +132,20 @@ block content
         if (e.key === 'Enter') {
           const command = commandInput.value.trim().toLowerCase();
 
+          // Clear previous outputs and tracks when new command is executed
+          outputArea.innerHTML = ''; // Clear terminal messages
+          tracksContainer.innerHTML = ''; // Clear track list
+
           if (command === '4weeks') {
-            fetchTopTracks('short_term'); // Fetch tracks from past 4 weeks
+            displayTypedMessage("Fetching top tracks from the last 4 weeks...", 'info-message', () => {
+              fetchTopTracks('short_term'); // Fetch tracks from past 4 weeks
+            });
           } else if (command === '6months') {
-            fetchTopTracks('medium_term'); // Fetch tracks from past 6 months
+            displayTypedMessage("Fetching top tracks from the last 6 months...", 'info-message', () => {
+              fetchTopTracks('medium_term'); // Fetch tracks from past 6 months
+            });
           } else {
-            alert('Invalid command. Try 4weeks or 6months.');
+            displayTypedMessage("Invalid command" , 'error-message'); // Display "Invalid command" in the terminal
           }
 
           commandInput.value = ''; // Clear input after submission
