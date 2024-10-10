@@ -28,6 +28,10 @@ block content
         span.instr Type 
         span.command 'year' 
         span.instr to display top tracks from past year
+      p.instr-command-line
+        span.instr Type 
+        span.command 'logout' 
+        span.instr to... make a pizza?
 
       // Command line for user input
       p.command-line
@@ -152,6 +156,10 @@ block content
           displayTypedMessage("Fetching top tracks from the past year...", 'info-message', () => {
             fetchTopTracks('long_term'); // Fetch tracks from past 6 months
           });
+          } else if (command === 'logout') {
+            displayTypedMessage("Logging out...", 'info-message', () => {
+            window.location.href = '/logout'; // Redirect to the logout route
+            });
           } else {
             displayTypedMessage("Invalid command" , 'error-message'); // Display "Invalid command" in the terminal
           }

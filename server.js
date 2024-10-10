@@ -26,12 +26,14 @@ app.get("/authorize", (req, res) => {
     client_id: client_id,
     scope: "user-top-read",
     redirect_uri: redirect_uri,
+    show_dialog: "true" // This forces the login screen to show every time
   });
 
   res.redirect(
     "https://accounts.spotify.com/authorize?" + auth_query_parameters.toString()
   );
 });
+
 
 app.get("/callback", async (req, res) => {
   const code = req.query.code;
@@ -148,5 +150,15 @@ app.post("/create-playlist", async (req, res) => {
   }
 });
 
+app.get("/logout", (req, res) => {
+  // Clear the stored access token
+  global.access_token = null;
+
+  // Clear any session-related cookies (if applicable)
+  res.clearCookie('connect.sid');  // Example of clearing a session cookie (if using express-session)
+
+  // Redirect the user back to your index page (home page)
+  res.redirect('/');  // This redirects the user to the homepage (index.pug)
+});
 
 
