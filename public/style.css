@@ -68,6 +68,7 @@ body {
   font-family: monospace;
   color: #0cbd79; /*Green terminal-like color */
   text-align: center; /* Center ASCII art */
+  margin-top: 5rem;
   margin-bottom: 20px; /* Add space between ASCII art and terminal */
   background-color: transparent;
   border-color: transparent;
