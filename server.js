@@ -1,6 +1,8 @@
 import express from "express";
 import fetch from "node-fetch";
 
+
+
 const app = express();
 
 app.set("views", "./views");
@@ -24,12 +26,14 @@ app.get("/authorize", (req, res) => {
     client_id: client_id,
     scope: "user-top-read",
     redirect_uri: redirect_uri,
+    show_dialog: "true" // This forces the login screen to show every time
   });
 
   res.redirect(
     "https://accounts.spotify.com/authorize?" + auth_query_parameters.toString()
   );
 });
+
 
 app.get("/callback", async (req, res) => {
   const code = req.query.code;
@@ -97,3 +101,64 @@ let listener = app.listen(3000, function () {
     "Your app is listening on http://localhost:" + listener.address().port
   );
 });
+
+app.get('/get-top-tracks', async (req, res) => {
+  const timeRange = req.query.time_range; // short_term, medium_term, long_term
+  const tracks = await getData(`/me/top/tracks?time_range=${timeRange}&limit=10`);
+  res.json(tracks); // Send the top tracks as JSON
+});
+
+app.post("/create-playlist", async (req, res) => {
+  const { playlistName, tracks } = req.body;
+
+  // Create a new playlist
+  const userInfo = await getData("/me");
+  const playlistResponse = await fetch(`https://api.spotify.com/v1/users/${userInfo.id}/playlists`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${global.access_token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name: playlistName,
+      public: false,
+    }),
+  });
+
+  if (playlistResponse.ok) {
+    const playlistData = await playlistResponse.json();
+
+    // Add tracks to the playlist
+    const addTracksResponse = await fetch(`https://api.spotify.com/v1/playlists/${playlistData.id}/tracks`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${global.access_token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        uris: tracks,
+      }),
+    });
+
+    if (addTracksResponse.ok) {
+      res.status(200).send("Playlist created and tracks added.");
+    } else {
+      res.status(500).send("Failed to add tracks to playlist.");
+    }
+  } else {
+    res.status(500).send("Failed to create playlist.");
+  }
+});
+
+app.get("/logout", (req, res) => {
+  // Clear the stored access token
+  global.access_token = null;
+
+  // Clear any session-related cookies (if applicable)
+  res.clearCookie('connect.sid');  // Example of clearing a session cookie (if using express-session)
+
+  // Redirect the user back to your index page (home page)
+  res.redirect('/');  // This redirects the user to the homepage (index.pug)
+});
+
+
