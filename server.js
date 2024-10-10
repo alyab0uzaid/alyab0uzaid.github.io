@@ -1,6 +1,8 @@
 import express from "express";
 import fetch from "node-fetch";
 
+
+
 const app = express();
 
 app.set("views", "./views");
@@ -103,5 +105,48 @@ app.get('/get-top-tracks', async (req, res) => {
   const tracks = await getData(`/me/top/tracks?time_range=${timeRange}&limit=10`);
   res.json(tracks); // Send the top tracks as JSON
 });
+
+app.post("/create-playlist", async (req, res) => {
+  const { playlistName, tracks } = req.body;
+
+  // Create a new playlist
+  const userInfo = await getData("/me");
+  const playlistResponse = await fetch(`https://api.spotify.com/v1/users/${userInfo.id}/playlists`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${global.access_token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name: playlistName,
+      public: false,
+    }),
+  });
+
+  if (playlistResponse.ok) {
+    const playlistData = await playlistResponse.json();
+
+    // Add tracks to the playlist
+    const addTracksResponse = await fetch(`https://api.spotify.com/v1/playlists/${playlistData.id}/tracks`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${global.access_token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        uris: tracks,
+      }),
+    });
+
+    if (addTracksResponse.ok) {
+      res.status(200).send("Playlist created and tracks added.");
+    } else {
+      res.status(500).send("Failed to add tracks to playlist.");
+    }
+  } else {
+    res.status(500).send("Failed to create playlist.");
+  }
+});
+
 
 

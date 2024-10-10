@@ -113,9 +113,9 @@ body {
 
 /* Style for the command-line text */
 .command-line {
-  color: #cccccc; /* Green text for a terminal effect */
+  color: #0cbd79; /* Green text for a terminal effect */
   display: inline-block;
-  margin-top: 20px;
+  margin-top: 40px;
   margin-bottom: 0px;
 }
 

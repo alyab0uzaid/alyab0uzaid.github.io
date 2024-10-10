@@ -15,15 +15,19 @@ block content
     .terminal
       // Instructions remain
       p.instr-command-line
-        span.instr Welcome to Termify #{user.display_name.trim()}
+        span.instr Greetings #{user.display_name}, Welcome to Termify
       p.instr-command-line
         span.instr Type 
         span.command '4weeks' 
-        span.instr Display top songs from past 4 weeks
+        span.instr to display top tracks from past 4 weeks
       p.instr-command-line
         span.instr Type 
         span.command '6months' 
-        span.instr Display top songs from past 6 months
+        span.instr to display top tracks from past 6 months
+      p.instr-command-line
+        span.instr Type 
+        span.command 'year' 
+        span.instr to display top tracks from past year
 
       // Command line for user input
       p.command-line
@@ -137,13 +141,17 @@ block content
           tracksContainer.innerHTML = ''; // Clear track list
 
           if (command === '4weeks') {
-            displayTypedMessage("Fetching top tracks from the last 4 weeks...", 'info-message', () => {
+            displayTypedMessage("Fetching top tracks from the past 4 weeks...", 'info-message', () => {
               fetchTopTracks('short_term'); // Fetch tracks from past 4 weeks
             });
           } else if (command === '6months') {
-            displayTypedMessage("Fetching top tracks from the last 6 months...", 'info-message', () => {
+            displayTypedMessage("Fetching top tracks from the past 6 months...", 'info-message', () => {
               fetchTopTracks('medium_term'); // Fetch tracks from past 6 months
             });
+          } else if (command === 'year') {
+          displayTypedMessage("Fetching top tracks from the past year...", 'info-message', () => {
+            fetchTopTracks('long_term'); // Fetch tracks from past 6 months
+          });
           } else {
             displayTypedMessage("Invalid command" , 'error-message'); // Display "Invalid command" in the terminal
           }
