@@ -1,7 +1,8 @@
 import express from "express";
 import fetch from "node-fetch";
+import dotenv from "dotenv"; // Import dotenv to load env variables
 
-
+dotenv.config(); // Load environment variables from .env file
 
 const app = express();
 
@@ -10,9 +11,9 @@ app.set("view engine", "pug");
 
 app.use(express.static("public"));
 
-const redirect_uri = "http://localhost:3000/callback";
-const client_id = "1ca6960013344c3f9d74dbbddb4f58bd";
-const client_secret = "e458068308b247c0b4fc223c2f0999c1";
+const redirect_uri = process.env.REDIRECT_URI; // Use env variables
+const client_id = process.env.SPOTIFY_CLIENT_ID; // Use env variables
+const client_secret = process.env.SPOTIFY_CLIENT_SECRET; // Use env variables
 
 global.access_token;
 
