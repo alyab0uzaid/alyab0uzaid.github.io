@@ -13,7 +13,7 @@ block content
 
     .terminal
       p.instr-command-line
-        span.instr Greetings #{user.display_name}, Welcome to Termify
+        span.instr Greetings #{user.display_name.replace(/\b\w/g, char => char.toUpperCase())}, Welcome to Termify
       p.instr-command-line
         span.instr Type 
         span.command '4weeks' 
@@ -28,12 +28,12 @@ block content
         span.instr to display top tracks from past year
       p.instr-command-line
         span.instr Type 
-        span.command 'save playlist -playlistname 
+        span.command 'save playlist -playlistname' 
         span.instr to save the current displayed tracks as a playlist
 
       // Command line for user input
       p.command-line
-        span #{user.display_name.trim()}@termify:~$
+        span #{user.display_name.replace(/\s+/g, '')}@termify:~$
         input#command-input(type='text', placeholder='', autocomplete='off')
 
       .output-container
