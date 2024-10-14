@@ -1,1 +1,1 @@
-# spotify-api-workshop
+# Termify
