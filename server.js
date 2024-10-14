@@ -11,6 +11,10 @@ app.set("view engine", "pug");
 
 app.use(express.static("public"));
 
+app.use(express.json()); // To parse JSON body
+app.use(express.urlencoded({ extended: true })); // To parse URL-encoded body
+
+
 const redirect_uri = process.env.REDIRECT_URI; // Use env variables
 const client_id = process.env.SPOTIFY_CLIENT_ID; // Use env variables
 const client_secret = process.env.SPOTIFY_CLIENT_SECRET; // Use env variables
@@ -25,7 +29,7 @@ app.get("/authorize", (req, res) => {
   var auth_query_parameters = new URLSearchParams({
     response_type: "code",
     client_id: client_id,
-    scope: "user-top-read",
+    scope: "user-top-read playlist-modify-private playlist-modify-public",
     redirect_uri: redirect_uri,
     show_dialog: "true" // This forces the login screen to show every time
   });
@@ -162,4 +166,113 @@ app.get("/logout", (req, res) => {
   res.redirect('/');  // This redirects the user to the homepage (index.pug)
 });
 
+app.post("/create-playlist", async (req, res) => {
+  try {
+    console.log("Received a request to create a playlist");
+    console.log("Request body:", req.body); // Log the request body
+    
+    const { playlistName, tracks } = req.body;
+    console.log("Creating playlist:", playlistName);
+    
+    const userInfo = await getData("/me");
+
+    const playlistResponse = await fetch(`https://api.spotify.com/v1/users/${userInfo.id}/playlists`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${global.access_token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: playlistName,
+        public: false,
+      }),
+    });
+
+    if (!playlistResponse.ok) {
+      console.log("Failed to create playlist:", playlistResponse.statusText);
+      return res.status(500).send("Failed to create playlist.");
+    }
+
+    const playlistData = await playlistResponse.json();
+    console.log("Playlist created:", playlistData);
+
+    // Add tracks to the playlist
+    const addTracksResponse = await fetch(`https://api.spotify.com/v1/playlists/${playlistData.id}/tracks`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${global.access_token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        uris: tracks,
+      }),
+    });
+
+    if (!addTracksResponse.ok) {
+      console.log("Failed to add tracks:", addTracksResponse.statusText);
+      return res.status(500).send("Failed to add tracks to playlist.");
+    }
+
+    console.log("Tracks added successfully");
+    res.status(200).send("Playlist created and tracks added.");
+    
+  } catch (error) {
+    console.error("Error in playlist creation:", error);
+    res.status(500).send("An error occurred while creating the playlist.");
+  }
+});
+
+
+app.post("/save-song", async (req, res) => {
+  try {
+    console.log("Saving song to playlist");
+
+    const userInfo = await getData("/me");
+    const specificTrackUri = 'spotify:track:40ds3xedbMkWhszkGnZwxi'; // A specific track URI
+
+    // Create a playlist
+    const playlistResponse = await fetch(`https://api.spotify.com/v1/users/${userInfo.id}/playlists`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${global.access_token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: "Test Playlist",
+        public: false,
+      }),
+    });
+
+    if (!playlistResponse.ok) {
+      console.log("Failed to create playlist:", playlistResponse.statusText);
+      return res.status(500).send("Failed to create playlist.");
+    }
+
+    const playlistData = await playlistResponse.json();
+    console.log("Playlist created:", playlistData);
+
+    // Add specific track to the playlist
+    const addTracksResponse = await fetch(`https://api.spotify.com/v1/playlists/${playlistData.id}/tracks`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${global.access_token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        uris: [specificTrackUri], // Adding just one track to test
+      }),
+    });
+
+    if (!addTracksResponse.ok) {
+      console.log("Failed to add track:", addTracksResponse.statusText);
+      return res.status(500).send("Failed to add track to playlist.");
+    }
+
+    console.log("Track added successfully");
+    res.status(200).send("Track added to playlist.");
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).send("An error occurred while saving the song.");
+  }
+});
 
