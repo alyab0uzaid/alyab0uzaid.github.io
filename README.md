@@ -2,7 +2,7 @@
 
 Termify is a terminal-like interface for Spotify that allows users to interact with their Spotify account via terminal commands. You can fetch your top tracks, create playlists, and more, all through a nostalgic command-line experience.
 
-![Termify Screenshot](https://your-image-url.com)
+![](https://github.com/alyab0uzaid/termify/blob/main/demo.gif)
 
 ## Motivation
 
