@@ -16,8 +16,8 @@ app.use(express.urlencoded({ extended: true })); // To parse URL-encoded body
 
 
 const redirect_uri = process.env.REDIRECT_URI; // Use env variables
-const client_id = process.env.SPOTIFY_CLIENT_ID; // Use env variables
-const client_secret = process.env.SPOTIFY_CLIENT_SECRET; // Use env variables
+const client_id = process.env.CLIENT_ID; // Use env variables
+const client_secret = process.env.CLIENT_SECRET; // Use env variables
 
 global.access_token;
 
