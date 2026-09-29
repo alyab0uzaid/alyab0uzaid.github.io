@@ -116,6 +116,11 @@
     .row .meta { color: var(--muted); font-size: 14px; font-variant-numeric: tabular-nums; white-space: nowrap; }
     .row p { grid-column: 1 / -1; color: var(--muted); font-size: 15px; }
 
+    .skills { margin-top: 8px; }
+    .skills .row { grid-template-columns: 110px 1fr; align-items: baseline; padding: 14px 0; }
+    .skills dt { color: var(--muted); font-size: 14px; }
+    .skills dd { margin: 0; }
+
     .contact { display: flex; flex-wrap: wrap; gap: 8px 28px; margin-top: 20px; }
 
     footer {
@@ -126,7 +131,7 @@
 
     @media (max-width: 480px) {
       main { padding-top: 64px; }
-      .row { grid-template-columns: 1fr; }
+      .row, .skills .row { grid-template-columns: 1fr; gap: 2px; }
     }
   </style>
 </head>
@@ -175,6 +180,17 @@
           <p>Spotify from the terminal: top tracks, saved playlists, all in a tactile command-line interface.</p>
         </li>
       </ul>
+    </section>
+
+    <section>
+      <h2>Skills</h2>
+      <dl class="skills">
+        <div class="row"><dt>Frontend</dt><dd>React, Next.js, TypeScript, Tailwind CSS, HTML &amp; CSS</dd></div>
+        <div class="row"><dt>Mobile</dt><dd>React Native, Expo</dd></div>
+        <div class="row"><dt>Backend</dt><dd>Node.js, Supabase, Postgres, Python</dd></div>
+        <div class="row"><dt>Design</dt><dd>Figma, design systems, prototyping, UI/UX</dd></div>
+        <div class="row"><dt>Tools</dt><dd>Git, Vercel, Docker</dd></div>
+      </dl>
     </section>
 
     <section>
