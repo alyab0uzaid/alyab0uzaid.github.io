@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aly Abou-Zaid</title>
+  <meta name="description" content="Aly Abou-Zaid — engineer, designer, and builder. M.S. Technology student at Eastern Illinois University.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --ink: #1c1b19;
+      --muted: #6f6b63;
+      --line: #e3dfd6;
+      --accent: #9a4a2b;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #151412;
+        --ink: #ece8e0;
+        --muted: #8f8a80;
+        --line: #2a2825;
+        --accent: #d98a67;
+      }
+    }
+
+    * { box-sizing: border-box; margin: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font: 400 16px/1.65 Inter, system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    main {
+      max-width: 620px;
+      margin: 0 auto;
+      padding: 96px 24px 72px;
+    }
+
+    a { color: inherit; text-decoration-color: var(--line); text-underline-offset: 3px; transition: color .15s, text-decoration-color .15s; }
+    a:hover { color: var(--accent); text-decoration-color: currentColor; }
+
+    header h1 {
+      font: 400 clamp(44px, 9vw, 64px)/1 "Instrument Serif", Georgia, serif;
+      letter-spacing: -0.01em;
+    }
+    header p {
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+    header p em {
+      font: italic 400 20px/1 "Instrument Serif", Georgia, serif;
+      color: var(--ink);
+    }
+
+    section { margin-top: 72px; }
+
+    h2 {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 8px;
+    }
+
+    .about p + p { margin-top: 16px; }
+    .about { margin-top: 20px; }
+
+    ul { list-style: none; padding: 0; }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 4px 24px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .row:last-child { border-bottom: 0; }
+    .row h3 { font-size: 16px; font-weight: 500; }
+    .row .meta { color: var(--muted); font-size: 14px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .row p { grid-column: 1 / -1; color: var(--muted); font-size: 15px; }
+
+    .contact { display: flex; flex-wrap: wrap; gap: 8px 28px; margin-top: 20px; }
+
+    footer {
+      margin-top: 96px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 480px) {
+      main { padding-top: 64px; }
+      .row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Aly Abou-Zaid</h1>
+      <p>Engineer, designer, and <em>builder</em>. I like making things people actually use.</p>
+    </header>
+
+    <div class="about">
+      <p>I'm a frontend engineer working toward my Master's in Technology at Eastern Illinois University, after finishing a B.A. in Computer Science at SIUE. Most of what I build lives at the intersection of design and code: apps, browser extensions, and small tools with a lot of care put into the details.</p>
+      <p>My long-term goal is simple: build meaningful products that have a real impact.</p>
+    </div>
+
+    <section>
+      <h2>Projects</h2>
+      <ul>
+        <li class="row">
+          <h3><a href="https://apps.apple.com/app/id6756989968">Salah</a></h3>
+          <span class="meta">2025</span>
+          <p>A prayer times and Qibla app with tracking, notifications, and tasbih. React Native and Expo.</p>
+        </li>
+        <li class="row">
+          <h3><a href="https://thecountrygame.com">The Country Game</a></h3>
+          <span class="meta">2025</span>
+          <p>Name a country for every letter of the alphabet — solo, local, or real-time online multiplayer.</p>
+        </li>
+        <li class="row">
+          <h3><a href="https://getrabbithole.io">RabbitHole</a></h3>
+          <span class="meta">2024</span>
+          <p>A Chrome extension that brings Wikipedia into any page and maps your path down the rabbit hole.</p>
+        </li>
+        <li class="row">
+          <h3><a href="https://prepguide.org">PrepGuide</a></h3>
+          <span class="meta">2023–now</span>
+          <p>Free SAT prep resources, co-founded with my brother.</p>
+        </li>
+        <li class="row">
+          <h3><a href="https://github.com/alyab0uzaid/termify">Termify</a></h3>
+          <span class="meta">2023</span>
+          <p>Spotify from the terminal: top tracks, saved playlists, all in a tactile command-line interface.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Education</h2>
+      <ul>
+        <li class="row">
+          <h3>Eastern Illinois University</h3>
+          <span class="meta">2026–now</span>
+          <p>M.S. in Technology</p>
+        </li>
+        <li class="row">
+          <h3>Southern Illinois University Edwardsville</h3>
+          <span class="meta">2021–2025</span>
+          <p>B.A. in Computer Science</p>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Elsewhere</h2>
+      <div class="contact">
+        <a href="mailto:3liabouzaid@gmail.com">Email</a>
+        <a href="https://github.com/alyab0uzaid">GitHub</a>
+        <a href="https://www.linkedin.com/in/alyabouzaid/">LinkedIn</a>
+        <a href="https://www.youtube.com/@AlyAbouZaid">YouTube</a>
+      </div>
+    </section>
+
+    <footer>© 2026 Aly Abou-Zaid · Charleston, IL</footer>
+  </main>
+</body>
+</html>
